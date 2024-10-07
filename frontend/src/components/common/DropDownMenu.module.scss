@@ -1,0 +1,37 @@
+.dropDownContainer {
+  position: absolute;
+  min-width: 11rem;
+  max-width: 20rem;
+  background: #fff;
+  top: 3.2rem;
+  right: -2rem;
+  border-radius: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  & .account {
+    padding: 1rem;
+    width: 100%;
+    border-bottom: 1px solid #f1f1f1;
+  }
+
+  & .otherLinks {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .menuLink {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+}

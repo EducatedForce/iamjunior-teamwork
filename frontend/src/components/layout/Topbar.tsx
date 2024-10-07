@@ -1,14 +1,15 @@
-import { useNavigate, Link } from "react-router-dom";
-import { ROUTES } from "../../router/consts";
+import {useNavigate, Link} from "react-router-dom";
+import {ROUTES} from "@/router/consts";
 import Button from "../common/Button";
 import styles from "./Topbar.module.scss";
 import Logo from "../../assets/logo.svg";
-import { useContext } from "react";
+import {useContext} from "react";
 import Avatar from "../common/Avatar";
-import { UserContext } from "@/context/UserContext";
+import {UserContext} from "@/context/UserContext";
+import DropDownMenu from "@/components/common/DropDownMenu";
 
 const Topbar = () => {
-  const { user } = useContext(UserContext);
+  const {user} = useContext(UserContext);
   const navigate = useNavigate();
 
   const links = [
@@ -30,7 +31,7 @@ const Topbar = () => {
     <header className={styles.topbar}>
       <div className={styles.leftSide}>
         <Link to={ROUTES.HOME}>
-          <img src={Logo} alt="logo" />
+          <img src={Logo} alt="logo"/>
         </Link>
         <nav className={styles.navigation}>
           {links.map((link) => (
@@ -42,7 +43,10 @@ const Topbar = () => {
       </div>
       <div className={styles.rightSide}>
         {user ? (
-          <Avatar>{user.name[0]}</Avatar>
+          <>
+            <Avatar>{user.name[0]}</Avatar>
+            <DropDownMenu user={user} />
+          </>
         ) : (
           <Button onClick={() => navigate(ROUTES.LOGIN)} large>
             Login / Sign Up
