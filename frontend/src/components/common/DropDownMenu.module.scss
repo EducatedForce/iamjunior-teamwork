@@ -4,18 +4,26 @@
   max-width: 20rem;
   background: #fff;
   top: 3.2rem;
-  right: -2rem;
+  right: -2.5rem;
   border-radius: 5px;
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  color: #323232;
+  transition: all .3s ease-in-out;
 
-  & .account {
-    padding: 1rem;
-    width: 100%;
-    border-bottom: 1px solid #f1f1f1;
+  .menuLink {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   & .otherLinks {
@@ -27,11 +35,20 @@
     gap: 1rem;
   }
 
-  .menuLink {
-    font-size: 1.2rem;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
+  & .account {
+    padding: 1rem;
+    width: 100%;
+    border-bottom: 1px solid #f1f1f1;
+  }
+
+  &.containerClosed {
+    overflow: hidden;
+    height: 0;
+  }
+
+  &.containerOpen {
+    overflow: hidden;
+    height: 9rem;
   }
 
 }

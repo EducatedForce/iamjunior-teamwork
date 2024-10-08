@@ -1,27 +1,34 @@
-import React from "react";
+import React, {useContext, useEffect, useState} from "react";
 import styles from "./DropDownMenu.module.scss";
-import {User} from "@/components/user/types";
-
+import {UserContext} from "@/context/UserContext";
+import {Link} from "react-router-dom";
+import {ROUTES} from "@/router/consts";
 
 type DropDownMenuProps = {
-  user: User;
-
+  toggleMenu: boolean;
 }
 
-const DropDownMenu = ({user}: DropDownMenuProps) => {
+const DropDownMenu = ({toggleMenu}: DropDownMenuProps) => {
+  const [className, setClassName] = useState<string>(styles.containerClosed);
+  const {logout} = useContext(UserContext);
+
+  useEffect(() => {
+    toggleMenu ? setClassName(styles.containerOpen) : setClassName(styles.containerClosed);
+  }, [toggleMenu]);
 
   const handleLogout = () => {
-    //TODO: User logout logic
+    return logout();
   };
 
   return (
-    <div className={styles.dropDownContainer}>
+    <div className={`${styles.dropDownContainer} ${className}`}>
       <div className={styles.account}>
-        <span className={styles.menuLink}>My Account</span>
+        <Link className={styles.menuLink} to={ROUTES.USER}>My Account</Link>
       </div>
       <div className={styles.otherLinks}>
-        <span className={styles.menuLink}>My Booking</span>
-        <span onClick={handleLogout} className={styles.menuLink}>Logout</span>
+        <Link className={styles.menuLink} to={ROUTES.USER_BOOKINGS}>My
+          Booking</Link>
+        <p onClick={handleLogout} className={styles.menuLink}>Logout</p>
       </div>
     </div>
   );

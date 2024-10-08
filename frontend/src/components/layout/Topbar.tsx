@@ -3,7 +3,7 @@ import {ROUTES} from "@/router/consts";
 import Button from "../common/Button";
 import styles from "./Topbar.module.scss";
 import Logo from "../../assets/logo.svg";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import Avatar from "../common/Avatar";
 import {UserContext} from "@/context/UserContext";
 import DropDownMenu from "@/components/common/DropDownMenu";
@@ -11,6 +11,12 @@ import DropDownMenu from "@/components/common/DropDownMenu";
 const Topbar = () => {
   const {user} = useContext(UserContext);
   const navigate = useNavigate();
+
+  const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+
+  const handleClick = () => {
+    setToggleMenu(prev => !prev);
+  };
 
   const links = [
     {
@@ -43,10 +49,10 @@ const Topbar = () => {
       </div>
       <div className={styles.rightSide}>
         {user ? (
-          <>
-            <Avatar>{user.name[0]}</Avatar>
-            <DropDownMenu user={user} />
-          </>
+          <div>
+            <Avatar onClick={handleClick}>{user.name[0]}</Avatar>
+            <DropDownMenu toggleMenu={toggleMenu}/>
+          </div>
         ) : (
           <Button onClick={() => navigate(ROUTES.LOGIN)} large>
             Login / Sign Up
